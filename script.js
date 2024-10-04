@@ -9,6 +9,12 @@ const testoCentrale = document.getElementById("testoCentrale");
 // Convertiamo le carte da NodeList ad Array
 let mazzo = Array.from(elementiMazzo);
 
+// Inizializza il gioco quando la pagina è caricata
+window.onload = () => {
+  iniziaAGiocare();
+  avviaTimer();
+};
+
 //Prompt di richiesta del nome e successiva stampa in pagina
 let richiestaNome = prompt("Sei pronto? Inserisci il tuo nome?");
 let titolo = document.getElementById("titolo");
@@ -131,11 +137,6 @@ function reverseFlip(carta) {
   carta.classList.add("bgCard");
 }
 
-// Inizializza il gioco quando la pagina è caricata
-window.onload = () => {
-  iniziaAGiocare();
-  avviaTimer();
-};
 //rende le carte di nuovo visibili
 function rendiTutteLeCarteVisibili() {
   mazzo.forEach((carta) => {
@@ -158,7 +159,7 @@ rigioca.addEventListener("click", () => {
   rendiTutteLeCarteVisibili();
   mischiaCarte(mazzo);
   score = 0;
-  aggiornaPunteggio();
+  punteggio.innerText = `Punteggio: ${score}`;
   tempo = 0;
   fermaTimer();
   iniziaAGiocare();
